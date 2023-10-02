@@ -1,9 +1,8 @@
 {
-  "name": "reactjs-chrome",
-  "author": "Himanshu Batra",
+  "name": "notemesh-extension",
+  "author": "Manav Malhotra",
   "version": "1.0.1",
   "main": "index.js",
-  "license": "MIT",
   "scripts": {
     "watch": "webpack --watch --progress --config webpack.dev.js",
     "build": "webpack --watch --progress --config webpack.prod.js"
