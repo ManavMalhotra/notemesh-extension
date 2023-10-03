@@ -8,7 +8,18 @@
     "default_title": "NoteMesh",
     "default_icon": "icon.png"
   },
-  "permissions": ["tabs", "bookmarks", "storage", "identity", "activeTab", "scripting"],
+  "chrome_url_overrides": {
+    "newtab": "newTab.html"
+  },
+  "permissions": [
+    "tabs",
+    "bookmarks",
+    "storage",
+    "identity",
+    "activeTab",
+    "scripting",
+    "nativeMessaging"
+  ],
   "icons": {
     "16": "icon.png",
     "48": "icon.png",
