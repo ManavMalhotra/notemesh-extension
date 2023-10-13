@@ -1,0 +1,56 @@
+.editorParent {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 2rem /* 32px */;
+}
+.notesContainer {
+  background-color: rgb(82 82 82 / var(--tw-bg-opacity));
+  display: inline-block;
+  padding-top: 0.25rem /* 4px */;
+  padding-bottom: 0.25rem /* 4px */;
+  padding-left: 0.5rem /* 8px */;
+  padding-right: 0.5rem /* 8px */;
+  border-radius: 0.25rem /* 4px */;
+}
+.editorParent button {
+  border-radius: 5px;
+  border: none;
+  background-color: #272727;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ce-toolbar--opened {
+  color: white;
+}
+
+.ce-toolbar__plus {
+  color: white;
+}
+
+.ce-toolbar__settings-btn {
+  color: white;
+}
+
+/* .codex-editor ::selection {
+    background-color: lightblue;
+  } */
+
+.ce-inline-toolbar {
+  background-color: black;
+}
+
+.ce-inline-toolbar--left-oriented.ce-inline-toolbar--showed {
+  background-color: white;
+}
+
+.ce-conversion-tool {
+  color: black;
+}
+
+.ce-inline-toolbar--left-oriented.ce-inline-toolbar--showed {
+  background-color: black;
+}
