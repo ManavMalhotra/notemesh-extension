@@ -31,6 +31,7 @@ const DEFAULT_INITIAL_DATA = {
     },
   ],
 };
+
 interface EditorProps {
   setAuthenticated: (value: boolean) => void;
 }
@@ -39,20 +40,51 @@ const Editor: React.FC<EditorProps> = ({ setAuthenticated }) => {
   const ejInstance = useRef<EditorJS | null>(null);
   const [initialData, setInitialData] = useState(DEFAULT_INITIAL_DATA);
   const [notes, setNotes] = useState([]);
+  const [noteTag, setNoteTag] = useState('personal');
 
   const user = auth.currentUser;
-  const notesRef = collection(db, 'notes', user.uid, 'notes');
 
-  // useEffect(() => {
-  //   const getNotes = async () => {
-  //     try {
-  //       const data = await getDocs(notesRef);
-  //       console.log('data', data);
-  //     } catch (error) {}
-  //   };
+  const [pageInfo, setPageInfo] = useState({
+    title: '',
+    url: '',
+    favicon: '',
+  });
+  const [loading, setLoading] = useState(true);
 
-  //   // getNotes();
-  // }, []);
+  useEffect(() => {
+    if (ejInstance.current === null) {
+      initEditor();
+    }
+
+    return () => {
+      ejInstance?.current?.destroy();
+      ejInstance.current = null;
+    };
+  }, []);
+
+  const getCurrentPageURL = async () => {
+    chrome.tabs.query(
+      { active: true, lastFocusedWindow: true },
+      function (tabs) {
+        let tab = tabs[0];
+        console.log(tab);
+        // let url = tab.url;
+
+        if (tab.url === undefined) {
+          return;
+        }
+        setPageInfo({
+          title: tab.title,
+          url: tab.url,
+          favicon: tab.favIconUrl,
+        });
+      }
+    );
+  };
+
+  useEffect(() => {
+    getCurrentPageURL();
+  }, [pageInfo]);
 
   const initEditor = () => {
     const editor = new EditorJS({
@@ -64,8 +96,6 @@ const Editor: React.FC<EditorProps> = ({ setAuthenticated }) => {
       data: initialData,
       onChange: async () => {
         let content = await editor.saver.save();
-
-        console.log(content);
       },
       tools: {
         header: {
@@ -83,35 +113,30 @@ const Editor: React.FC<EditorProps> = ({ setAuthenticated }) => {
   const onSave = async () => {
     try {
       if (ejInstance.current) {
-        // Save data using ejInstance.current.save()
         const savedData = await ejInstance.current.save();
-        console.log('Saved Data: ', savedData);
 
-        const documentId = auth.currentUser?.uid;
-        console.log(documentId);
+        const notesCollection = collection(db, 'users', user.uid, 'notes');
 
-        console.log('savedData:', savedData);
-        await addDoc(notesRef, savedData);
+        const newNote = {
+          url: pageInfo.url,
+          web_name: pageInfo.title,
+          favicon: pageInfo.favicon,
+          title: 'Your note title',
+          content: JSON.stringify(savedData),
+          createdAt: new Date().getTime(),
+          tag: noteTag,
+        };
 
-        console.log('Note saved successfully.');
+        console.log('newNote', newNote);
+        const docRef = await addDoc(notesCollection, newNote).then(() => {
+          alert('Note saved!');
+        });
+        console.log('saved ID', newNote);
       }
-      console.log('USER', auth.currentUser);
     } catch (error) {
       console.error('Error saving note: ', error);
-      // Handle the error appropriately, e.g., show an error message to the user
     }
   };
-
-  useEffect(() => {
-    if (ejInstance.current === null) {
-      initEditor();
-    }
-
-    return () => {
-      ejInstance?.current?.destroy();
-      ejInstance.current = null;
-    };
-  }, []);
 
   const handleLogout = () => {
     signOut(auth).then(() => {
@@ -123,7 +148,34 @@ const Editor: React.FC<EditorProps> = ({ setAuthenticated }) => {
     <div>
       <section className="editorParent">
         <div className="notesContainer">
-          <h2>Notes</h2>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}
+          >
+            <h2>Notes</h2>
+            <select
+              name="notes-tag"
+              id="notes-tag"
+              value={noteTag}
+              onChange={(e) => setNoteTag(e.target.value)}
+            >
+              <option value="personal">🟡 Personal</option>
+              <option value="work">🔴 Work</option>
+              <option value="reading">🔵 Reading</option>
+              <option value="entertainment">🟣 Entertainment</option>
+            </select>
+          </div>
+          {loading ? (
+            <div>
+              <h3>{pageInfo.title}</h3>
+              <p>{pageInfo.url}</p>
+            </div>
+          ) : (
+            <p>Loading...</p>
+          )}
         </div>
         <button onClick={onSave}>Save</button>
         <button onClick={handleLogout}> Logout</button>

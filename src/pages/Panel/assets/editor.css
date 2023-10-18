@@ -13,7 +13,7 @@
   padding-right: 0.5rem /* 8px */;
   border-radius: 0.25rem /* 4px */;
 }
-.editorParent button {
+/* .editorParent button {
   border-radius: 5px;
   border: none;
   background-color: #272727;
@@ -39,7 +39,7 @@
     background-color: lightblue;
   } */
 
-.ce-inline-toolbar {
+/* .ce-inline-toolbar {
   background-color: black;
 }
 
@@ -53,4 +53,4 @@
 
 .ce-inline-toolbar--left-oriented.ce-inline-toolbar--showed {
   background-color: black;
-}
+} */

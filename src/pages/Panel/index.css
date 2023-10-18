@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.container {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  background-color: yellow;
+}
+
+select {
+  font-size: 0.9rem;
+  padding: 4px 8px;
+  background-color: transparent;
+  border-radius: 0.6rem;
+}

@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
-import './assets/panel.css';
+import './index.css';
 import Editor from './Editor';
 import Login from './components/Login';
 import { auth } from './firebase';
+import { getAuth } from 'firebase/auth';
 const Panel: React.FC = () => {
   const [authenticated, setAuthenticated] = React.useState(false);
   const [username, setUsername] = React.useState('');
@@ -10,6 +11,18 @@ const Panel: React.FC = () => {
   const [loading, setLoading] = React.useState(false);
 
   console.log('authenticated', authenticated);
+
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        setAuthenticated(true);
+      } else {
+        setAuthenticated(false);
+      }
+    });
+  }, []);
+
+  const auth = getAuth();
 
   useEffect(() => {
     if (auth.currentUser !== null) {
