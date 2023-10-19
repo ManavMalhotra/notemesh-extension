@@ -32,7 +32,6 @@ const Panel: React.FC = () => {
 
   return (
     <div className="container">
-      <h1>NoteMesh - Extension</h1>
       {authenticated ? (
         <Editor setAuthenticated={setAuthenticated} />
       ) : (

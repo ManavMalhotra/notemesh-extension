@@ -7,6 +7,8 @@ import {
 } from 'firebase/auth';
 import { collection, getDocs, addDoc } from 'firebase/firestore';
 
+import '../assets/login.css';
+
 interface LoginProps {
   setAuthenticated: (value: boolean) => void;
 }
@@ -20,15 +22,15 @@ const Login: React.FC<LoginProps> = ({ setAuthenticated }) => {
   const onSubmit = async () => {
     try {
       if (mail === '' || password === '') {
-        // Handle empty email or password
+        alert('Empty email or password');
         return;
       }
       if (mail.indexOf('@') === -1 || mail.indexOf('.') === -1) {
-        // Handle invalid email format
+        alert('Invalid email format');
         return;
       }
       if (password.length < 6) {
-        // Handle weak password
+        alert('Weak password');
         return;
       }
 
@@ -47,55 +49,141 @@ const Login: React.FC<LoginProps> = ({ setAuthenticated }) => {
       if (error.code === 'auth/user-not-found') {
         // Handle the case where the user does not exist
         console.log('User does not exist. You can display an error message.');
+      } else if (error.code === 'auth/invalid-login-credentials') {
+        alert('Invalid login credentials');
       } else {
         // Handle other authentication errors
-        console.error('Authentication error:', error);
+        alert(error);
       }
     }
   };
 
-  const onRegister = async () => {
-    if (mail === '' || password === '') {
-      // Handle empty email or password
-      return;
-    }
-    if (mail.indexOf('@') === -1 || mail.indexOf('.') === -1) {
-      // Handle invalid email format
-      return;
-    }
-    if (password.length < 6) {
-      // Handle weak password
-      return;
-    }
+  // const onRegister = async () => {
+  //   if (mail === '' || password === '') {
+  //     // Handle empty email or password
+  //     return;
+  //   }
+  //   if (mail.indexOf('@') === -1 || mail.indexOf('.') === -1) {
+  //     // Handle invalid email format
+  //     return;
+  //   }
+  //   if (password.length < 6) {
+  //     // Handle weak password
+  //     return;
+  //   }
 
-    try {
-      createUserWithEmailAndPassword(auth, mail, password).then(
-        (userCredential) => {
-          // Signed in
-          const user = userCredential.user;
-          console.log(user);
-          alert('User created successfully!');
-        }
-      );
-    } catch (error) {}
-  };
+  //   try {
+  //     createUserWithEmailAndPassword(auth, mail, password).then(
+  //       (userCredential) => {
+  //         // Signed in
+  //         const user = userCredential.user;
+  //         console.log(user);
+  //         alert('User created successfully!');
+  //       }
+  //     );
+  //   } catch (error) {}
+  // };
 
   return (
-    <div>
-      <h1> Login </h1>
-      <input
-        type="text"
-        placeholder="mail"
-        onChange={(e) => setmail(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="password"
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button onClick={onSubmit}>Sign In</button>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
+    >
+      <h1> Signin </h1>
 
-      <h1> Register </h1>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          gap: '10px',
+          placeItems: 'center',
+        }}
+      >
+        <label
+          htmlFor="email"
+          style={{
+            fontSize: '14px',
+            display: 'block',
+            fontWeight: 600,
+            textAlign: 'left',
+          }}
+        >
+          Email:
+        </label>
+        <input
+          type="text"
+          placeholder="johndoe@mail.com"
+          onChange={(e) => setmail(e.target.value)}
+          style={{
+            marginBottom: '10px',
+            padding: '10px',
+            borderRadius: '5px',
+            border: '1px solid #ccc',
+          }}
+        />
+      </div>
+
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          gap: '10px',
+          placeItems: 'center',
+        }}
+      >
+        <label
+          htmlFor="email"
+          style={{
+            fontSize: '14px',
+            display: 'block',
+            fontWeight: 600,
+            textAlign: 'left',
+          }}
+        >
+          Password:
+        </label>
+
+        <input
+          type="password"
+          placeholder="johndoe@com123"
+          onChange={(e) => setPassword(e.target.value)}
+          style={{
+            marginBottom: '10px',
+            padding: '10px',
+            borderRadius: '5px',
+            border: '1px solid #ccc',
+          }}
+        />
+      </div>
+
+      <a
+        href="https://notemesh-frontend.vercel.app/signup"
+        style={{ textDecoration: 'none', color: 'blue' }}
+      >
+        Don't have an account? Register here
+      </a>
+
+      <button
+        onClick={onSubmit}
+        className="btn"
+        style={{
+          marginBottom: '10px',
+          padding: '10px',
+          borderRadius: '5px',
+          border: '1px solid #ccc',
+          width: '100px',
+          marginTop: '10px',
+        }}
+      >
+        Sign In
+      </button>
+
+      {/* <h1> Register </h1>
       <input
         type="text"
         placeholder="mail"
@@ -106,7 +194,7 @@ const Login: React.FC<LoginProps> = ({ setAuthenticated }) => {
         placeholder="password"
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button onClick={onRegister}>Sign Up</button>
+      <button onClick={onRegister}>Sign Up</button> */}
     </div>
   );
 };
