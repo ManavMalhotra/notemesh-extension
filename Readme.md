@@ -36,6 +36,8 @@ Please note that these steps may vary slightly depending on your web browser.
 # Usage
 To use the NoteMesh Extension, simply click on the extension icon while you’re on a webpage where you want to take notes. The Notion-like note editor will appear as a side panel, allowing you to take notes in real time.
 
+https://github.com/ManavMalhotra/notemesh-extension/assets/64147782/8382c0c0-5080-4e02-9d75-366b5ccc4a27
+
 ## Visit Our Website
 NoteMesh - [Visit Us](https://notemesh-frontend.vercel.app/)
 
