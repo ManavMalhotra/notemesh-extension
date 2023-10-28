@@ -161,13 +161,6 @@ const Login: React.FC<LoginProps> = ({ setAuthenticated }) => {
         />
       </div>
 
-      <a
-        href="https://notemesh-frontend.vercel.app/signup"
-        style={{ textDecoration: 'none', color: 'blue' }}
-      >
-        Don't have an account? Register here
-      </a>
-
       <button
         onClick={onSubmit}
         className="btn"
@@ -182,6 +175,24 @@ const Login: React.FC<LoginProps> = ({ setAuthenticated }) => {
       >
         Sign In
       </button>
+
+      <h3
+        style={{
+          fontSize: '14px',
+          display: 'block',
+          fontWeight: 600,
+          textAlign: 'left',
+          cursor: 'pointer',
+          margin: '0px',
+          color: '#1a73e8',
+          padding: '0px',
+          marginTop: '10px',
+          marginBottom: '5px',
+        }}
+      >
+        Don't have an account? Register here
+      </h3>
+      <p>https://notemesh-frontend.vercel.app/signup</p>
 
       {/* <h1> Register </h1>
       <input
