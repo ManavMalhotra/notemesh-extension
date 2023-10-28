@@ -4,17 +4,25 @@ NoteMesh Extension is a powerful tool designed to work seamlessly with our main 
 # Installation
 Follow these steps to install the NoteMesh Extension:
 
-1. **Download the Extension:** Download the [latest release](https://github.com/ManavMalhotra/notemesh-extension/releases/tag/extension) of the NoteMesh Extension from the GitHub repository.
+1. **Download the Extension:** Download the [latest release](https://github.com/ManavMalhotra/notemesh-extension/releases/tag/extension) of the NoteMesh Extension from the GitHub repository.![image](https://github.com/ManavMalhotra/notemesh-extension/assets/64147782/4cf8401c-98bd-4566-9c29-0e1ad40babd0)
 
-2. **Unzip the File:** After downloading, unzip the file to your preferred location on your computer.
+2. **Unzip the File:** After downloading, unzip the file to your preferred location on your computer.![image](https://github.com/ManavMalhotra/notemesh-extension/assets/64147782/fce8c16f-5a24-47fb-bc8d-9f76dbf5f6d3)
 
-3. **Open Your Browser:** Open your web browser and navigate to the extensions page. In most browsers, this can be found in the settings menu under “More Tools” or “Extensions”.
 
-4. **Enable Developer Mode:** On the extensions page, enable “Developer Mode”. This is usually a toggle switch in the top right corner.
+3. **Open Your Browser:** Open your web browser and navigate to the extensions page. In most browsers, this can be found in the settings menu under “More Tools” or “Extensions”.![image](https://github.com/ManavMalhotra/notemesh-extension/assets/64147782/d451978f-9d9d-4e7f-8ea8-01d1c8a1878b)
 
-5. **Load Unpacked Extension:** Click on “Load Unpacked” and navigate to the location where you unzipped the downloaded file. Select the unzipped folder.
 
-6. **Installation Complete:** The NoteMesh Extension should now be visible in your list of extensions and ready for use!
+4. **Enable Developer Mode:** On the extensions page, enable “Developer Mode”. This is usually a toggle switch in the top right corner.![image](https://github.com/ManavMalhotra/notemesh-extension/assets/64147782/ba8b6589-5be1-41bd-b2bd-eebbe6106e2c)
+
+
+5. **Load Unpacked Extension:** Click on “Load Unpacked” and navigate to the location where you unzipped the downloaded file. Select the unzipped folder.![image](https://github.com/ManavMalhotra/notemesh-extension/assets/64147782/f613eee0-9d46-4c6a-9754-221db3ba477f)
+
+
+6. **Installation Complete:** The NoteMesh Extension should now be visible in your list of extensions and ready for use!![image](https://github.com/ManavMalhotra/notemesh-extension/assets/64147782/6d3a2006-dbd9-45bb-9669-9983cc1471de)
+
+7. **[OPTIONAL] Pin The Extenesion:**
+![image](https://github.com/ManavMalhotra/notemesh-extension/assets/64147782/d76a8b37-8465-4d0f-97b6-6f23ead76d5f)
+
 
 Please note that these steps may vary slightly depending on your web browser.
 
